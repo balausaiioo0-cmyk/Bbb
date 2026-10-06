@@ -1,0 +1,22 @@
+document.addEventListener('DOMContentLoaded', () => {
+    const copyBtn = document.getElementById('copyBtn');
+
+    if (copyBtn) {
+        copyBtn.addEventListener('click', () => {
+            const currentUrl = window.location.href;
+            
+            navigator.clipboard.writeText(currentUrl).then(() => {
+                const originalText = copyBtn.innerText;
+                copyBtn.innerText = '✅ Сілтеме көшірілді!';
+                copyBtn.style.background = '#22c55e';
+
+                setTimeout(() => {
+                    copyBtn.innerText = originalText;
+                    copyBtn.style.background = '#334155';
+                }, 2000);
+            }).catch(err => {
+                alert('Сілтеме: ' + currentUrl);
+            });
+        });
+    }
+});
